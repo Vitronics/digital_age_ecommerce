@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <title>Home</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+ <header>
+    <h1>Digital Age Technology</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="#">Support</a>
+      <a href="contact.html">Contact</a>
+   
+      <span class="user-greeting" id="greeting">
+      <i class="fas fa-user"></i>
+      <span id="username-text">Guest</span>
+    </span>
+   
+    </nav>
+    
+  </header>
+<div class="marquee">
+  <span>LEADING IN TECHNOLOGY GADGETS AND SMART DEVICES &nbsp;&nbsp; &nbsp;&nbsp;INTERACTIVE WEBSITE  THAT POWERS YOUR BUSINESS AND LIFE</span>
+</div>
+
+    <div class="header">
+<h1>DIGITAL AGE TECHNOLOGIES</h1>
+<h2>Browse Tons of Exiciting Products</h2>
+<p>Your one stop shop for  quality and affordable products</p>
+<!-- <button><a href="login.html">GET STARTED</a></button>
+<button><a href="product.html"> <li class="fa fas arrow">Browse more</li> </a></button> -->
+
+<div class="btn-group">
+  <a href="login.html" class="btn">GET STARTED</a>
+  <a href="product.html" class="btn">Browse more</a>
+</div>
+
+
+</div>
+<!-- <img id="image" src="/assets/img/1724927937768.jpg" alt="image"> -->
+ 
+<script>
+fetch('/api/email', {
+  credentials: 'include'
+})
+.then(async res => {
+  if (!res.ok) throw new Error('Not logged in');
+  const data = await res.json();
+  if (data.email) {
+    document.getElementById('username-text').innerText = `Welcome, ${data.email}`;
+  } else {
+    document.getElementById('username-text').innerText = 'Guest';
+  }
+})
+.catch(() => {
+  document.getElementById('username-text').innerText = 'Guest';
+});
+</script>
+
+</body>
+</html>

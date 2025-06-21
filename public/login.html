@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+ <link rel="stylesheet" href="main.css">
+ <style>
+        body{
+    font-family: Arial, Helvetica, sans-serif;
+   background-color: #f4f4f4;
+   margin: 0;
+   padding: 40px 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   /* height: 100vh; */
+}
+    </style>
+</head>
+<body>
+    <h1>LOGIN</h1>
+     
+    <p style="color: rgb(250, 165, 47);">Login to get started</p>
+    <form action="/api/auth/login" method="POST">
+     
+        <label for="email">Email
+            <input type="email" name="email" placeholder="Enter your  Email" required>
+        </label>
+        <label for="password">Password
+            <input type="password" name="password" placeholder="Enter your  password" required>
+        </label>
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+         <div id="message"></di>
+    </form>
+    
+     <script src="script.js"></script>
+      <script>
+      const params = new URLSearchParams(window.location.search);
+  const messageElement = document.getElementById('message');
+
+  if (params.get('loggedIn') === 'true') {
+    messageElement.textContent = ' successful! Redirecting ...';
+    messageElement.style.opacity = '1';
+    messageElement.style.color = 'green';
+    messageElement.style.fontWeight = 'bold';
+
+    // ✅ Redirect to login after showing message
+    setTimeout(() => {
+      window.location.href = 'product.html';
+    }, 3000);
+  }
+   else if (params.get('error') === 'invalid') {
+  messageElement.textContent = 'Invalid email or password.';
+  messageElement.style.opacity = '1';
+  messageElement.style.color = 'red';
+  messageElement.style.fontWeight = 'bold';
+  
+} else if (params.get('unknown') === 'notFound') {
+  messageElement.textContent = 'User does not exist, please register!.';
+  messageElement.style.opacity = '1';
+  messageElement.style.color = 'red';
+  messageElement.style.fontWeight = 'bold';
+}
+
+  console.log("Login Param:", params.get('loggedIn'));
+    </script>
+
+</body>
+</html>

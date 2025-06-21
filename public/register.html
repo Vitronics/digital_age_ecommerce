@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body{
+    font-family: Arial, Helvetica, sans-serif;
+   background-color: #f4f4f4;
+   margin: 0;
+   padding: 40px 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   /* height: 100vh; */
+}
+    </style>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+    <h1>REGISTER</h1>
+    
+    <p style="color: rgb(250, 165, 47);">Register to get started</p>
+    <form action="/api/auth/register" method="POST">
+        <label for="first_name">First Name
+            <input type="text" name="firstName" placeholder="Enter your  First Name" required>
+        </label>
+        <label for="last_name">Last name
+            <input type="text" name="lastName" placeholder="Enter your  Last Name" required>
+        </label>
+        <label for="email">Email
+            <input type="email" name="email" placeholder="Enter your  Email" required>
+        </label>
+        <label for="password">Password
+            <input type="password" name="password" placeholder="Enter your  password" required>
+        </label>
+        <button type="submit">Register</button>
+          <button  id="cancel"><a href="index.html">Close</a></button>
+        <p>Already have an account? <a href="login.html">signin</a></p>
+       <div id="message"></div>
+    </form>
+    <script src="script.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+  const messageElement = document.getElementById('message');
+
+  if (params.get('registered') === 'true') {
+    messageElement.textContent = 'Registration successful! Redirecting to login...';
+    messageElement.style.opacity = '1';
+    messageElement.style.color = 'green';
+    messageElement.style.fontWeight = 'bold';
+
+    // ✅ Redirect to login after showing message
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 3000);
+  }
+   else if (params.get('exists') === 'true') {
+  messageElement.textContent = 'User already exists. Please login.';
+  messageElement.style.opacity = '1';
+  messageElement.style.color = 'red';
+  messageElement.style.fontWeight = 'bold';
+}
+
+  console.log("Registered Param:", params.get('registered'));
+    </script>
+
+
+</body>
+</html>
